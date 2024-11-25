@@ -7,7 +7,7 @@ import com.amazonaws.services.iot.client.AWSIotTopic;
 
 public class Main {
 
-    private static final String CLIENT_ENDPOINT = "<ENDPOINT>"; 
+    private static final String CLIENT_ENDPOINT = "alhkpl3ouqngv-ats.iot.us-east-1.amazonaws.com"; 
     private static final String CLIENT_ID = "rfid-subscriber";     
     private static final String CERTIFICATE_FILE = "src/main/resources/certificate.pem.crt";
     private static final String PRIVATE_KEY_FILE = "src/main/resources/private.pem.key";
