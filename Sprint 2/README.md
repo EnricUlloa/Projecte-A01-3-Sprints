@@ -16,4 +16,4 @@ Esto...
 
 ## Guia de estilos (web)
 
-En este documento PDF se encuentra la guia de estilos para el esquema web. 
+En este documento PDF se encuentra la guia de estilos para el esquema web. Esto lo redirigira al pdf: [Guia de estilos WEB](https://github.com/EnricUlloa/Projecte-A01-3-Sprints/blob/main/Sprint%202/PROJ_Sprint2_GuiaEstilos_Web_EnricUlloa.pdf)
