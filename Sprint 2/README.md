@@ -16,3 +16,4 @@ Esto...
 
 ## Guia de estilos (web)
 
+En este documento PDF se encuentra la guia de estilos para el esquema web. 
