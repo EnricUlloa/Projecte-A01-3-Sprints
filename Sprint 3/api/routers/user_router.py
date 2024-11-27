@@ -1,8 +1,7 @@
 from typing import List, Optional
-from fastapi import APIRouter, HTTPException, UploadFile
+from fastapi import APIRouter, HTTPException
 from api.classes import UserInfo
-from api.internal import db_room, db_user, user_schema as UserSchema
-import csv
+from api.internal import db_user, user_schema as UserSchema
 
 router = APIRouter()
 

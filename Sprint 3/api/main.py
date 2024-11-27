@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from api.routers import user_router 
+from api.routers import user_router, attendance_router
 
 app = FastAPI()
 app.add_middleware(
@@ -14,6 +14,7 @@ app.add_middleware(
 )
 
 app.include_router(user_router.router)
+app.include_router(attendance_router.router)
 
 @app.get("/")
 def root():

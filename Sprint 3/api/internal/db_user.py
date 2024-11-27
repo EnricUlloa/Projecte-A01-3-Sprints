@@ -20,8 +20,6 @@ def read(
         user u
       LEFT JOIN 
         gruped_users gu ON u.id = gu.user_id
-      GROUP BY 
-        u.id, u.email, u.full_name, u.rol;
     """
     
     params = []
@@ -30,6 +28,12 @@ def read(
     if name is not None:
       query += " WHERE u.full_name LIKE %s"
       params.append(f"%{name}%")
+    
+    # Agrega la agrupación
+    query += """
+      GROUP BY 
+        u.id, u.email, u.full_name, u.rol;
+    """
     
     # Añadir orden
     if orderby is not None:
@@ -64,10 +68,10 @@ def read_one(id: int):
         GROUP_CONCAT(gu.group_name ORDER BY gu.group_name SEPARATOR ',') AS groups
       FROM 
         user u
-      WHERE
-        u.id = %s
       LEFT JOIN 
         gruped_users gu ON u.id = gu.user_id
+      WHERE
+        u.id = %s
       GROUP BY 
         u.id, u.email, u.full_name, u.rol;
     """
@@ -76,3 +80,4 @@ def read_one(id: int):
     cur.execute(query, params)
     
     return cur.fetchone()
+  

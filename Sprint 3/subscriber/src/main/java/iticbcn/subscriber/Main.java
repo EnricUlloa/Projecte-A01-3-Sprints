@@ -7,11 +7,11 @@ import com.amazonaws.services.iot.client.AWSIotTopic;
 
 public class Main {
 
-    private static final String CLIENT_ENDPOINT = "alhkpl3ouqngv-ats.iot.us-east-1.amazonaws.com"; 
-    private static final String CLIENT_ID = "rfid-subscriber";     
+    private static final String CLIENT_ENDPOINT = "a2m49w5lny7qra-ats.iot.us-east-1.amazonaws.com"; 
+    private static final String CLIENT_ID = "rfid-client-listener";     
     private static final String CERTIFICATE_FILE = "src/main/resources/certificate.pem.crt";
     private static final String PRIVATE_KEY_FILE = "src/main/resources/private.pem.key";
-    private static final String TOPIC_NAME = "prueba";          
+    private static final String TOPIC_NAME = "esp32/esp32-to-aws";       
 
     public static void main(String[] args) {
         try {

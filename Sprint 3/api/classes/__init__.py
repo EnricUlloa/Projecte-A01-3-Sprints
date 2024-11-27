@@ -1,9 +1,9 @@
-from .user import User, UserInfo
-from .group import Group, GroupedUsers
-from .room import Room
-from .attendance import Attendance
-from .checkin import Checkin
-from .schedule import Schedule
+from .user import *
+from .group import *
+from .room import *
+from .attendance import *
+from .checkin import *
+from .schedule import *
 
 
 

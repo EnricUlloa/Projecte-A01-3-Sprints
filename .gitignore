@@ -2,3 +2,4 @@
 .vscode
 *.class
 target
+*__pycache__

@@ -22,7 +22,7 @@ import java.security.cert.X509Certificate;
 
 public class Util {
     private static final String alias = "keyAlias";
-    private static final String password = "askjdhlsjdap 1`pme ññññ";
+    private static final String password = "askjdhlsjdapADSADSADESP32";
 
     // Cargar un KeyStore con el certificado y la clave privada
     public static KeyStore getKeyStorePasswordPair(String certificateFile, String privateKeyFile, String algorithm) {

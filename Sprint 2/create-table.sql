@@ -16,7 +16,7 @@ create table room (
 	code varchar(10) primary key not null
 );
 
-create table gruped_users (
+create table grouped_users (
 	user_id int not null,
 	group_name varchar(10) not null,
 	primary key (user_id, group_name),
@@ -27,17 +27,15 @@ create table gruped_users (
 
 CREATE TABLE schedule (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    manager_id INT NOT NULL,             -- Referencia al usuario
     group_name varchar(10) NOT NULL,             -- Referencia al grupo
     room_code varchar(10) NOT NULL,      -- Referencia a la sala
     week_day ENUM('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday') NOT NULL,
     start_time TIME NOT NULL,         	 -- Hora de inicio
     end_time TIME NOT NULL,          	 -- Hora de finalización
-    FOREIGN KEY (manager_id) REFERENCES user(id) ON DELETE CASCADE,
     FOREIGN KEY (group_name) REFERENCES groups(name) ON DELETE CASCADE,
     FOREIGN KEY (room_code) REFERENCES room(code) ON DELETE CASCADE,
-    UNIQUE(manager_id, group_name, room_code, week_day, start_time),
-    UNIQUE(manager_id, group_name, room_code, week_day, end_time),
+    UNIQUE(group_name, room_code, week_day, start_time),
+    UNIQUE(group_name, room_code, week_day, end_time),
     check (end_time > start_time)
 );
 
@@ -53,13 +51,15 @@ create table checkin (
 
 create table attendance (
 	id int primary key auto_increment,
+	registrer_id int not null,
 	user_id int not null,
 	check_time datetime not null,
 	schedule_id int not null,
 	type enum('attended', 'late', 'missed', 'justified'),
+	foreign key (registrer_id) references user(id),
 	foreign key (user_id) references user(id),
 	foreign key (schedule_id) references schedule(id),
-	unique (user_id, check_time)
+	unique (user_id, check_time, schedule_id)
 );
 
 

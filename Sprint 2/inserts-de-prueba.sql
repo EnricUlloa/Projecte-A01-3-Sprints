@@ -17,13 +17,13 @@ values
 	("GroupB");
 
 -- groups > user
-insert into gruped_users (user_id, group_name)
+insert into grouped_users (user_id, group_name)
 values
 	(1, "GroupA"),
 	(2, "GroupB");
 
 -- checkins
-insert into checkin (user_id, room_code, checkin_time)
+insert into checkin ( user_id, room_code, checkin_time)
 values
   (1, 'Room101', '2023-10-23 08:15:00'),
   (1, 'Room101', '2023-10-23 09:15:00'),
@@ -33,7 +33,6 @@ values
 -- horarios (schedules)
 insert into
   schedule (
-    manager_id,
     group_name,
     room_code,
     week_day,
@@ -42,7 +41,6 @@ insert into
   )
 values
   (
-    2,
     'GroupA',
     'Room101',
     'Monday',
@@ -50,7 +48,6 @@ values
     '09:00:00'
   ),
   (
-    2,
     'GroupA',
     'Room101',
     'Monday',
@@ -58,7 +55,6 @@ values
     '10:00:00'
   ),
   (
-    1,
     'GroupB',
     'Room102',
     'Tuesday',
@@ -66,7 +62,6 @@ values
     '11:00:00'
   ),
   (
-    1,
     'GroupB',
     'Room102',
     'Tuesday',
@@ -76,11 +71,11 @@ values
   
  
  -- Attendance
-insert into attendance (user_id, check_time, schedule_id, type)
+insert into attendance (registrer_id, user_id, check_time, schedule_id, type)
 values
-  (1, '2023-10-23 08:15:00', 1, 'attended'),
-  (1, '2023-10-23 09:15:00', 2, 'late'),
-  (2, '2023-10-23 10:15:00', 3, 'attended'),
-  (2, '2023-10-23 11:15:00', 4, 'justified');
+  (1, 2, '2023-10-23 08:15:00', 1, 'attended'),
+  (1, 2, '2023-10-23 09:15:00', 2, 'late'),
+  (1, 2, '2023-10-23 10:15:00', 3, 'attended'),
+  (1, 2, '2023-10-23 11:15:00', 4, 'justified');
   
  
