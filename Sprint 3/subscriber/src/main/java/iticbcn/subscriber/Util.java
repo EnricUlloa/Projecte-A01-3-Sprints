@@ -21,22 +21,24 @@ import java.io.FileReader;
 import java.security.cert.X509Certificate;
 
 public class Util {
+    private static final String alias = "keyAlias";
+    private static final String password = "askjdhlsjdap 1`pme ññññ";
 
     // Cargar un KeyStore con el certificado y la clave privada
-    public static KeyStorePasswordPair getKeyStorePasswordPair(String certificateFile, String privateKeyFile, String algorithm) {
+    public static KeyStore getKeyStorePasswordPair(String certificateFile, String privateKeyFile, String algorithm) {
         try {
             // Crear un KeyStore vacío
             KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
-            keyStore.load(null, null);
+            keyStore.load(null, password.toCharArray());
 
             // Cargar el certificado y la clave privada usando Bouncy Castle
             X509Certificate certificate = loadCertificateFromPEM(certificateFile);
             PrivateKey privateKey = loadPrivateKeyFromPEM(privateKeyFile, algorithm);
 
             // Agregar el certificado y la clave privada al KeyStore
-            keyStore.setKeyEntry("alias", privateKey, null, new Certificate[]{certificate});
+            keyStore.setKeyEntry(alias, privateKey, password.toCharArray(), new Certificate[]{certificate});
 
-            return new KeyStorePasswordPair(keyStore, "");
+            return keyStore;
         } catch (KeyStoreException | NoSuchAlgorithmException | CertificateException | IOException e) {
             throw new RuntimeException("Error al cargar el KeyStore desde los archivos", e);
         }
@@ -62,7 +64,7 @@ public class Util {
 
     // Inicializar el cliente MQTT de AWS IoT
     public static AWSIotMqttClient initClient(String endpoint, String clientId, String certificateFile, String privateKeyFile) {
-        KeyStorePasswordPair pair = Util.getKeyStorePasswordPair(certificateFile, privateKeyFile, "RSA");
-        return new AWSIotMqttClient(endpoint, clientId, pair.keyStore, pair.keyPassword);
+        KeyStore key = Util.getKeyStorePasswordPair(certificateFile, privateKeyFile, "RSA");
+        return new AWSIotMqttClient(endpoint, clientId, key, password);
     }
 }

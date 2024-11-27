@@ -16,10 +16,10 @@ public class RfidTopicListener extends AWSIotTopic {
         System.out.println("Mensaje recibido: " + payload);
 
         // Guardar en base de datos
-        guardarEnBaseDeDatos(payload);
+        storeData(payload);
     }
 
-    private void guardarEnBaseDeDatos(String datos) {
+    private void storeData(String datos) {
         // Lógica para guardar en base de datos (por ejemplo, MySQL o MongoDB)
         System.out.println("Guardando en base de datos: " + datos);
     }
