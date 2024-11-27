@@ -8,7 +8,7 @@ values
 insert into room (code) 
 values
 	("Room101"),
-	("Room102";
+	("Room102");
 
 -- groups
 insert into groups (name)
