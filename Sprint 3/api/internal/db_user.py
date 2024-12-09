@@ -19,7 +19,7 @@ def read(
       FROM 
         user u
       LEFT JOIN 
-        gruped_users gu ON u.id = gu.user_id
+        grouped_users gu ON u.id = gu.user_id
     """
     
     params = []
@@ -69,7 +69,7 @@ def read_one(id: int):
       FROM 
         user u
       LEFT JOIN 
-        gruped_users gu ON u.id = gu.user_id
+        grouped_users gu ON u.id = gu.user_id
       WHERE
         u.id = %s
       GROUP BY 

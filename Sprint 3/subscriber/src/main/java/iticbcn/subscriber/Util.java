@@ -2,6 +2,7 @@ package iticbcn.subscriber;
 
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -17,7 +18,7 @@ import org.bouncycastle.openssl.jcajce.JcaPEMKeyConverter;
 import org.bouncycastle.cert.X509CertificateHolder;
 import org.bouncycastle.cert.jcajce.JcaX509CertificateConverter;
 
-import java.io.FileReader;
+import java.io.BufferedReader;
 import java.security.cert.X509Certificate;
 
 public class Util {
@@ -46,7 +47,11 @@ public class Util {
 
     // Cargar el certificado X.509 desde un archivo PEM
     public static X509Certificate loadCertificateFromPEM(String certificateFile) throws IOException, CertificateException {
-        try (PEMParser pemParser = new PEMParser(new FileReader(certificateFile))) {
+        try (PEMParser pemParser = new PEMParser(
+            new BufferedReader( new InputStreamReader(
+                Main.getResourceAsStream(certificateFile)
+            ))
+        )) {
             X509CertificateHolder certHolder = (X509CertificateHolder) pemParser.readObject();
             return new JcaX509CertificateConverter().getCertificate(certHolder);
         }
@@ -54,7 +59,11 @@ public class Util {
 
     // Cargar la clave privada desde un archivo PEM
     public static PrivateKey loadPrivateKeyFromPEM(String privateKeyFile, String algorithm) throws IOException {
-        try (PEMParser pemParser = new PEMParser(new FileReader(privateKeyFile))) {
+        try (PEMParser pemParser = new PEMParser(
+            new BufferedReader( new InputStreamReader(
+                Main.getResourceAsStream(privateKeyFile)
+            ))
+        )) {
             Object object = pemParser.readObject();
             JcaPEMKeyConverter converter = new JcaPEMKeyConverter();
             PEMKeyPair pemKeyPair = (PEMKeyPair) object;
