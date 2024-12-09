@@ -29,7 +29,7 @@ public class RfidTopic extends AWSIotTopic {
 
         switch (rfid) {
           case "none":
-            returnFeedBack("0", false);
+            returnFeedBack("The payload must contain an rfid String field", false);
             break;
 
           default: storeData(jsonPayload, rfid);
@@ -48,21 +48,24 @@ public class RfidTopic extends AWSIotTopic {
         String room = jsonPayload.optString("room");
 
         if (!db.checkRoomExists(room)) {
-          returnFeedBack("0", false);
-          System.out.printf("Room: %s,  doesnt exist%n", room);
+          String message = String.format("Room: %s,  doesnt exist%n", room);
+          returnFeedBack(message, false);
+          System.out.println(message);
           return;
         }
 
         String userId = db.getUserIdFromRFID(rfid);
         if (userId == null) {
-          returnFeedBack("0", false);
-          System.out.printf("User with rfid: %s,  doesnt exist%n", rfid);
+          String message = String.format("User with rfid: %s,  doesnt exist%n", rfid);
+          returnFeedBack(message, false);
+          System.out.println(message);
           return;
         }
 
         if (!db.canUserAccessRoom(Integer.parseInt(userId), room)) {
+          String message = String.format("User with rfid: %s can not enter room: %s%n", rfid, room);
           returnFeedBack("0", false);
-          System.out.printf("User with rfid: %s can not enter room: %s%n", rfid, room);
+          System.out.println(message);
           return;
         }
 
