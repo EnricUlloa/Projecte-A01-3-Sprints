@@ -11,6 +11,7 @@ Para instalar y ejecutar la aplicación, sigue estos pasos:
 1. Clona el repositorio.
 2. Instala las dependencias utilizando `pip install -r requirements.txt`.
 3. Ejecuta la aplicación con `python -m uvicorn app.main:app --reload`.
+<!-- python -m uvicorn api.main:app --reload --port 80 -->
 
 ## Uso
 
