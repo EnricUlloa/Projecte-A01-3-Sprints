@@ -23,6 +23,10 @@ Se proveen dos jars, uno para testeo, y otro para deploy en un servidor, igual s
  - Para el testeo: `java -jar subscriber\client-for-testing.jar`
  - Para el servidor: `java -jar subscriber\client-for-server.jar`
 
+## Demostración con pruebas
+El siguiente .md contiene varias pruebas que demuestran que el cliente verdaderamente procesa la información que recibe de los topics, y da un
+feedback adecuado a lo procesado: [PRUEBAS](subscriber/PRUEBAS.md)
+
 # API python
 
 ## Introducción
