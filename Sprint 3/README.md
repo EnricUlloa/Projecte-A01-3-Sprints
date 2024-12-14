@@ -18,3 +18,20 @@ Para inicar el programa, hace falta usar maven.
 El programa entonces se quedará escuchando al endpoint, por el momento solo muestra el mensaje en format string crudo.
 Futuramente guardará los datos en una tabla de una base de datos
 
+# API python
+
+## Introducción
+
+Esta es una API para gestionar alumnos y aulas. La API permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre los alumnos.
+
+## Instalación
+
+Para instalar y ejecutar la aplicación, sigue estos pasos:
+
+1. Clona el repositorio.
+2. Asegurarse estar en la carpeta padre de api
+3. Instala las dependencias utilizando `pip install -r api/requirements.txt`.
+4. Ejecuta la aplicación con `python -m uvicorn api.main:app --reload`.
+
+5. [Opcional] se puede definir el puerto manualmente `python -m uvicorn api.main:app --reload --port 80`, dependiendo del puerto puede requerir permisos más elevados
+

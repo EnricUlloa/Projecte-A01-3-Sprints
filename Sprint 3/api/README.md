@@ -9,8 +9,16 @@ Esta es una API para gestionar alumnos y aulas. La API permite realizar operacio
 Para instalar y ejecutar la aplicación, sigue estos pasos:
 
 1. Clona el repositorio.
-2. Instala las dependencias utilizando `pip install -r requirements.txt`.
-3. Ejecuta la aplicación con `python -m uvicorn app.main:app --reload`.
+2. Asegurarse estar en la carpeta padre de api
+3. Instala las dependencias utilizando `pip install -r api/requirements.txt`.
+4. Ejecuta la aplicación con `python -m uvicorn api.main:app --reload`.
+
+
+
+> [!WARNING]
+> La siguiente documentación no tiene nada que ver, era de una API antigua de la que se copio el código base
+> Es solo para tener un esquema de como deberia quedar la documentación con todos los endpoints etc.
+
 
 ## Uso
 
