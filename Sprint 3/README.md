@@ -17,6 +17,11 @@ Para inicar el programa, hace falta usar maven.
 
 El programa entonces se quedará escuchando al endpoint, por el momento solo muestra el mensaje en format string crudo.
 Futuramente guardará los datos en una tabla de una base de datos
+<br>
+
+Se proveen dos jars, uno para testeo, y otro para deploy en un servidor, igual se puede modificar las propiedades de conexion en el main conforme a las necesidades,  como la ip, credenciales etc. <br>
+ - Para el testeo: `java -jar subscriber\client-for-testing.jar`
+ - Para el servidor: `java -jar subscriber\client-for-server.jar`
 
 # API python
 
