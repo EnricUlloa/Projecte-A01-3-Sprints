@@ -36,6 +36,7 @@ public class RfidTopic extends AWSIotTopic {
 
         }
       } catch (JSONException e) {
+        returnFeedBack("Body format invalid, not JSON format", false);
         System.err.println("Error decoding JSON payload: " + e.getMessage());
         return; // Exit the method if JSON is invalid
       } 
@@ -45,10 +46,17 @@ public class RfidTopic extends AWSIotTopic {
     private void storeData(JSONObject jsonPayload, String rfid) {
       try {
         Database db = Database.getInstance();
-        String room = jsonPayload.optString("room");
+        String room = jsonPayload.optString("room", "none");
+
+        if(room.equalsIgnoreCase("none")) {
+          String message = "The payload must contain an room String field";
+          returnFeedBack(message, false);
+          return;
+        
+        }
 
         if (!db.checkRoomExists(room)) {
-          String message = String.format("Room: %s,  doesnt exist%n", room);
+          String message = String.format("Room: %s,  doesnt exist", room);
           returnFeedBack(message, false);
           System.out.println(message);
           return;
@@ -56,22 +64,22 @@ public class RfidTopic extends AWSIotTopic {
 
         String userId = db.getUserIdFromRFID(rfid);
         if (userId == null) {
-          String message = String.format("User with rfid: %s,  doesnt exist%n", rfid);
+          String message = String.format("User with rfid: %s,  doesnt exist", rfid);
           returnFeedBack(message, false);
           System.out.println(message);
           return;
         }
 
         if (!db.canUserAccessRoom(Integer.parseInt(userId), room)) {
-          String message = String.format("User with rfid: %s can not enter room: %s%n", rfid, room);
-          returnFeedBack("0", false);
+          String message = String.format("User with rfid: %s can not enter room: %s", rfid, room);
+          returnFeedBack(message, false);
           System.out.println(message);
           return;
         }
 
         if (db.insertCheckin(Integer.parseInt(userId), room)){
           returnFeedBack("Usuario registrado correctamente", true); //* **** ENTRADA GUARDADA EXITOSAMENTE
-          System.out.printf("User with rfid '%s' entered room '%s'%n", rfid, room);
+          System.out.printf("User with rfid '%s' entered room '%s'", rfid, room);
         }
         else {
           returnFeedBack("Semantic error trying to insert user presence check in", false);
@@ -80,17 +88,17 @@ public class RfidTopic extends AWSIotTopic {
 
       } 
       catch (Exception e) {
+        returnFeedBack("Error en el procesamiento", false);
         System.out.println(e);
         e.printStackTrace();
-        returnFeedBack("Error en el procesamiento", false);
       }
     }
 
-    public void returnFeedBack(String feedbackMessage, boolean status) {
+    public void returnFeedBack(String feedbackMessage, boolean ok) {
       try {
         // Convirtiendo a JSON
         JSONObject feedbackJson = new JSONObject();
-        feedbackJson.put("status", status? "1": "0");
+        feedbackJson.put("status", ok? "1": "0");
         feedbackJson.put("message", feedbackMessage);
         String feedbackMessageJson = feedbackJson.toString();
         // Debugging

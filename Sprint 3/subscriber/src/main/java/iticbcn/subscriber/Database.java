@@ -7,7 +7,7 @@ public class Database {
   private static Database instance;
   private Connection connection;
 
-  private static final String URL = "jdbc:mariadb://192.168.13.2:3306/proj";
+  private static final String URL = "jdbc:mariadb://192.168.13.2/proj";
   private static final String USER = "java_remote_client";
   private static final String PASSWORD = "system";
   
