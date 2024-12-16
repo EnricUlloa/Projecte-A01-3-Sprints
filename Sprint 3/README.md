@@ -39,4 +39,5 @@ Para instalar y ejecutar la aplicación, sigue estos pasos:
 4. Ejecuta la aplicación con `python -m uvicorn api.main:app --reload`.
 
 5. [Opcional] se puede definir el puerto manualmente `python -m uvicorn api.main:app --reload --port 80`, dependiendo del puerto puede requerir permisos más elevados
+6. [Opcional] se puede definir que el host sea 0.0.0.0, para poder acceder desde otros dispositivos: `python -m uvicorn api.main:app --reload --port 80 --host 0.0.0.0`
 
