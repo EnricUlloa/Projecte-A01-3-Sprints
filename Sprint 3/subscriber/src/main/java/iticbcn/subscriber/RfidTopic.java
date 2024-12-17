@@ -32,6 +32,8 @@ public class RfidTopic extends AWSIotTopic {
             returnFeedBack("The payload must contain an rfid String field", false);
             break;
 
+          case "No card detected": break;
+
           default: storeData(jsonPayload, rfid);
 
         }
